@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Diary & TODO</title>
+    <title>My Daily Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    </head>
+    <body>
     <div class="container">
+        <div class="notebook-holes"></div>
         <header>
             <h1>My Daily Life</h1>
             <nav>
@@ -19,7 +23,13 @@
         <main>
             <!-- Diary Section -->
             <section id="diary" class="tab-content active">
+                <div class="mood-selector">
+                    <button class="mood-btn active" data-mood="happy">😊</button>
+                    <button class="mood-btn" data-mood="neutral">😐</button>
+                    <button class="mood-btn" data-mood="sad">😢</button>
+                </div>
                 <div class="input-group">
+
                     <textarea id="diary-input" placeholder="今日のできごとを書きましょう..."></textarea>
                     <button id="save-diary">保存する</button>
                 </div>

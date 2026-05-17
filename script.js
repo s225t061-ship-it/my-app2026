@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State Management ---
     let diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
     let todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
+    let selectedMood = 'happy';
 
     // --- DOM Elements ---
     const tabBtns = document.querySelectorAll('.tab-btn');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const diaryInput = document.getElementById('diary-input');
     const saveDiaryBtn = document.getElementById('save-diary');
     const diaryList = document.getElementById('diary-list');
+    const moodBtns = document.querySelectorAll('.mood-btn');
 
     const todoInput = document.getElementById('todo-input');
     const addTodoBtn = document.getElementById('add-todo');
@@ -29,6 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Mood Logic ---
+    moodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            moodBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedMood = btn.dataset.mood;
+        });
+    });
+
+    function getMoodEmoji(mood) {
+        const moods = {
+            happy: '😊',
+            neutral: '😐',
+            sad: '😢'
+        };
+        return moods[mood] || '😊';
+    }
+
     // --- Diary Logic ---
     function renderDiary() {
         diaryList.innerHTML = '';
@@ -38,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.className = 'diary-item';
             item.innerHTML = `
                 <span class="date">${entry.date}</span>
+                <span class="mood-icon">${getMoodEmoji(entry.mood)}</span>
                 <div class="content">${escapeHtml(entry.text)}</div>
                 <button class="delete-btn" onclick="deleteDiary(${actualIndex})">削除</button>
             `;
@@ -51,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const newEntry = {
             text: text,
+            mood: selectedMood,
             date: new Date().toLocaleString('ja-JP', { 
                 year: 'numeric', month: '2-digit', day: '2-digit', 
                 hour: '2-digit', minute: '2-digit' 
