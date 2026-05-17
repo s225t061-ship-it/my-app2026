@@ -67,6 +67,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return moods[mood] || '😊';
     }
 
+    const replies = {
+        happy: [
+            "素敵な一日だったんだね！読んでて嬉しくなっちゃった ✨",
+            "ハッピーのおすそ分け、ありがとう！明日もいい日になれー！ 🎈",
+            "最高だね！その気持ち、大切にノートにしまっておくね 📒",
+            "キラキラしてるね！あなたの笑顔が目に浮かぶよ 😊",
+            "いいことあったんだね！私もお祝いさせてね 🥂"
+        ],
+        neutral: [
+            "今日も一日お疲れ様。ゆっくり休んでね 🌙",
+            "普通の毎日こそが、一番の幸せかもしれないね 🍀",
+            "穏やかな時間、大切にしてね。明日もあなたのペースで 🐢",
+            "ノートに書いてスッキリしたかな？また明日も待ってるね 🖋️",
+            "一歩ずつ、着実に進んでるね。応援してるよ 🚩"
+        ],
+        sad: [
+            "大変だったね。ノートは全部聞いてるから、無理しないでね 🫂",
+            "泣きたい時は泣いてもいいんだよ。明日は少し心が軽くなりますように ☁️",
+            "頑張りすぎちゃったかな？今日は自分をたくさん甘やかしてね 🧸",
+            "大丈夫、明けない夜はないよ。ゆっくり休んでパワーを溜めよう 🔋",
+            "ここに書き出してくれてありがとう。あなたの味方だよ 🤝"
+        ]
+    };
+
+    function getRandomReply(mood) {
+        const moodReplies = replies[mood] || replies.neutral;
+        return moodReplies[Math.floor(Math.random() * moodReplies.length)];
+    }
+
     // --- Diary Logic ---
     function renderDiary() {
         diaryList.innerHTML = '';
@@ -78,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="date">${entry.date}</span>
                 <span class="mood-icon">${getMoodEmoji(entry.mood)}</span>
                 <div class="content">${escapeHtml(entry.text)}</div>
+                ${entry.reply ? `<div class="diary-reply"><span>お返事:</span> ${entry.reply}</div>` : ''}
                 <button class="delete-btn" onclick="deleteDiary(${actualIndex})">削除</button>
             `;
             diaryList.appendChild(item);
@@ -91,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newEntry = {
             text: text,
             mood: selectedMood,
+            reply: getRandomReply(selectedMood),
             date: new Date().toLocaleString('ja-JP', { 
                 year: 'numeric', month: '2-digit', day: '2-digit', 
                 hour: '2-digit', minute: '2-digit' 

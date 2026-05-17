@@ -275,6 +275,35 @@ button#save-diary:hover, button#add-todo:hover {
 .diary-item .content {
     white-space: pre-wrap;
     font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.diary-reply {
+    margin-top: 15px;
+    padding: 10px 12px;
+    background: var(--paper-bg);
+    border: 1px dashed var(--accent-color);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #777;
+    position: relative;
+}
+
+.diary-reply::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid var(--accent-color);
+    opacity: 0.3;
+}
+
+.diary-reply span {
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-right: 5px;
 }
 
 .todo-item {
