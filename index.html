@@ -13,12 +13,17 @@
     <div class="container">
         <div class="notebook-holes"></div>
         <header>
+            <div class="bgm-control">
+                <button id="bgm-toggle" title="BGMを再生/停止">🎵 OFF</button>
+            </div>
             <h1>My Daily Life</h1>
             <nav>
                 <button class="tab-btn active" data-tab="diary">日記</button>
                 <button class="tab-btn" data-tab="todo">TODO</button>
             </nav>
         </header>
+
+        <audio id="bgm-player" src="BGM.mp3" loop></audio>
 
         <main>
             <!-- Diary Section -->

@@ -72,6 +72,32 @@ header {
     padding: 40px 20px 30px 45px;
     text-align: center;
     border-bottom: 2px dashed var(--border-color);
+    position: relative;
+}
+
+/* BGM Control */
+.bgm-control {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#bgm-toggle {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+
+#bgm-toggle.playing {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
 }
 
 header h1 {

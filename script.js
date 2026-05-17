@@ -18,6 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const todoList = document.getElementById('todo-list');
     const todoStats = document.getElementById('todo-stats');
 
+    // --- BGM Logic ---
+    const bgmPlayer = document.getElementById('bgm-player');
+    const bgmToggle = document.getElementById('bgm-toggle');
+    let isPlaying = false;
+
+    bgmToggle.addEventListener('click', () => {
+        if (isPlaying) {
+            bgmPlayer.pause();
+            bgmToggle.textContent = '🎵 OFF';
+            bgmToggle.classList.remove('playing');
+        } else {
+            bgmPlayer.play().catch(e => console.log("BGM play failed:", e));
+            bgmToggle.textContent = '🎵 ON';
+            bgmToggle.classList.add('playing');
+        }
+        isPlaying = !isPlaying;
+    });
+
     // --- Tab Logic ---
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
