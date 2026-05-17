@@ -1,0 +1,210 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #2d3436;
+    --accent-color: #6c5ce7;
+    --delete-color: #ff7675;
+    --border-radius: 16px;
+    --shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.tab-btn.active {
+    background: white;
+    color: var(--accent-color);
+}
+
+main {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input Styles */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+textarea:focus, input[type="text"]:focus {
+    border-color: var(--accent-color);
+}
+
+button#save-diary, button#add-todo {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* List Styles */
+.list-container {
+    list-style: none;
+}
+
+.diary-item, .todo-item {
+    background: #fdfdfd;
+    border-left: 4px solid var(--accent-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.diary-item .date {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.diary-item .content {
+    white-space: pre-wrap;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.todo-item.completed .content {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    color: var(--delete-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.todo-item .delete-btn {
+    position: static;
+    margin-left: auto;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+}
+
+.progress-container {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #718096;
+    text-align: right;
+}

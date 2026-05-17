@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary & TODO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Daily Life</h1>
+            <nav>
+                <button class="tab-btn active" data-tab="diary">日記</button>
+                <button class="tab-btn" data-tab="todo">TODO</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Diary Section -->
+            <section id="diary" class="tab-content active">
+                <div class="input-group">
+                    <textarea id="diary-input" placeholder="今日のできごとを書きましょう..."></textarea>
+                    <button id="save-diary">保存する</button>
+                </div>
+                <div id="diary-list" class="list-container">
+                    <!-- Diary entries will appear here -->
+                </div>
+            </section>
+
+            <!-- TODO Section -->
+            <section id="todo" class="tab-content">
+                <div class="input-group">
+                    <input type="text" id="todo-input" placeholder="新しいタスクを入力...">
+                    <button id="add-todo">追加</button>
+                </div>
+                <div class="progress-container">
+                    <span id="todo-stats">0 / 0 完了</span>
+                </div>
+                <ul id="todo-list" class="list-container">
+                    <!-- TODO items will appear here -->
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
